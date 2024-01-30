@@ -1,0 +1,231 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #333;
+}
+
+.whole{
+  height: 100vh;
+}
+
+#main {
+  padding:10px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  margin-bottom: 30px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  position: sticky;
+}
+
+header a {
+  text-decoration: none;
+}
+
+#logo {
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+#logo h4{
+  display: inline;
+  margin-left: 5px;
+}
+
+#logo img{
+  height: 30px;
+  width: 30px;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.postAlignment{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.post {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 25px;
+  border-radius: 1em;
+}
+
+.post .image{
+  width: 100%;
+  height: 180px;
+}
+
+.post .image img {
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 1em 1em;
+  border-top-left-radius: 1em 1em;
+}
+
+.details h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.details a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.details{
+  margin-top: 10px;
+}
+
+.info {
+  margin: 6px 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #888;
+  display: flex;
+  gap: 10px;
+}
+ 
+.info a {
+  color: #333;
+  text-decoration: none;
+}
+
+.summary {
+  margin: 13px 0;
+  line-height: 1.4rem;
+}
+
+.login , .register {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.header-btn {
+  border: none;
+  padding: 9px;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  border-radius: 5px;
+  width: auto;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.header-btn span{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+form input {
+  display: block;
+  margin-bottom: 8px;
+  width: 100%;
+  padding: 7px 7px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+form button {
+  width: 100%;
+  background-color: #f47b0c;
+  border: 0;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px 0;
+}
+
+.login h1, .register h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.post-page {
+  max-width: 90%;
+  margin: auto;
+}
+
+.post-page .image{
+   max-height: 250px;
+   display: flex;
+   justify-content: center;
+}
+.post-page .image img{
+   object-fit: fill;
+   max-width: 100%;
+}
+
+.content a{
+  color: #333;
+  text-decoration: underline;
+}
+
+.post-page h1{
+  text-align: center;
+  margin: 10px 0 5px;
+}
+
+.post-page time {
+  text-align: center;
+  display: block;
+  font-size: 0.9rem;
+  color: #8b8b8b;
+}
+.post-page .author {
+  text-align: center;
+  margin: 5px 0 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.post-page .content p{
+  line-height: 1.8rem;
+}
+
+.post-page .edit{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post-page .edit-btn{
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-btn svg{
+  height: 20px;
+}
+
+a, button{
+  cursor: pointer;
+}
