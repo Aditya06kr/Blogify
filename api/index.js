@@ -17,7 +17,7 @@ const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
 const corsOperation = {
   credentials: true,
-  origin: "https://blogify-tau-five.vercel.app/",
+  origin: "https://blogify-tau-five.vercel.app",
   optionsSuccessStatus: 200,
 };
 
