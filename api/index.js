@@ -163,6 +163,14 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
+app.get("/",async(req,res,next)=>{
+  res.status(200).json({"message":"Working"});
+});
+
+
+app.get("/ping",async(req,res,next)=>{
+  res.status(200).json({"message":"pong"});
+});
 app.listen(process.env.API_PORT);
 
 // mongodb+srv://Blog:mOd8HQQhHoa2gQk8@cluster0.xby3ou4.mongodb.net/?retryWrites=true&w=majority
