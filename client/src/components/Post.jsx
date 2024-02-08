@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_KEY;
 
 function Post({ title, summary, _id, cover, createdAt, author }) {
+  console.log(apiUrl)
   return (
     <div className="post">
       <div className="image">
         <Link to={`/post/${_id}`}>
-          <img src={`http://localhost:4000/` + cover} alt="pic.jpg" />
+          <img src={`${apiUrl}/` + cover} alt="pic.jpg" />
         </Link>
       </div>
       <div className="details">

@@ -31,7 +31,7 @@ const EditPost = () => {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((res) => {
+    fetch(`${apiUrl}/post/${id}`).then((res) => {
       res.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
@@ -50,7 +50,7 @@ const EditPost = () => {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const res = await fetch(`http://localhost:4000/post`, {
+    const res = await fetch(`${apiUrl}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",

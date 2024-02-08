@@ -9,13 +9,13 @@ const Homepage = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:4000/post`).then((res) => {
+    fetch(`${apiUrl}/post`).then((res) => {
       res.json().then((posts) => {
         setPosts(posts);
         setLoading(false);
       })
       .catch((e)=>{
-        console.log("Homepage Catch 1");
+        console.log("Homepage Catch 1",e);
       })
       .catch((e)=>{
         console.log("Homepage Catch 2");

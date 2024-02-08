@@ -10,7 +10,7 @@ const Postpage = () => {
   const [postinfo, setPostinfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((res) => {
+    fetch(`${apiUrl}/post/${id}`).then((res) => {
       res.json().then((postInfo) => {
         setPostinfo(postInfo);
       });
@@ -45,7 +45,7 @@ const Postpage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4000/${postinfo.cover}`} alt="Hello" />
+        <img src={`${apiUrl}/${postinfo.cover}`} alt="Hello" />
       </div>
       <div
         className="content"

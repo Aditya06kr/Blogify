@@ -14,7 +14,7 @@ const Loginpage = () => {
 
   async function login(e) {
     e.preventDefault();
-    const res = await fetch(`http://localhost:4000/login`, {
+    const res = await fetch(`${apiUrl}/login`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
