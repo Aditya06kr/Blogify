@@ -17,7 +17,7 @@ const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
 const corsOperation = {
   credentials: true,
-  origin: "http://localhost:5173",
+  origin: "https://blogifyme.vercel.app",
   optionsSuccessStatus: 200,
 };
 
