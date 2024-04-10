@@ -43,6 +43,9 @@ const CreatePost = () => {
     if (res.ok) {
       setRedirect(true);
     }
+    else{
+      console.log(res);
+    }
   }
 
   if(redirect){

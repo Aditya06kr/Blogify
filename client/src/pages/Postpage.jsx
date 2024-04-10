@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
+import { MdDeleteOutline } from "react-icons/md";
+import { RiEditBoxLine } from "react-icons/ri";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const apiUrl=import.meta.env.VITE_KEY;
+const apiUrl = import.meta.env.VITE_KEY;
 
 const Postpage = () => {
   const { id } = useParams();
   const [postinfo, setPostinfo] = useState(null);
+  const [redirect, setRedirect] = useState(false);
   const { userInfo } = useContext(UserContext);
   useEffect(() => {
     fetch(`${apiUrl}/post/${id}`).then((res) => {
@@ -18,30 +23,53 @@ const Postpage = () => {
   }, []);
 
   if (!postinfo) return;
+
+  async function Delete_Post() {
+    if (!confirm("Are You Sure ?")) return;
+
+    const res = await fetch(`${apiUrl}/Delete`, {
+      method: "DELETE",
+      body: JSON.stringify({ id: postinfo._id }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    if (res.ok) {
+      toast.success("Post Deleted Successfully");
+      setRedirect(true);
+    } else {
+      alert("Unable to Delete");
+    }
+  }
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
     <div className="post-page">
       <h1>{postinfo.title}</h1>
       <time>{formatISO9075(new Date(postinfo.createdAt))}</time>
       <div className="author">by @{postinfo.author.username}</div>
-      {userInfo?.id === postinfo.author._id && (  
-        <div className="edit">
-          <Link to={`/edit/${postinfo._id}`} className="edit-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              />
-            </svg>
-            Edit This Post
-          </Link>
+      {userInfo?.id === postinfo.author._id && (
+        <div id="post-features">
+          <div className="edit-delete">
+            <Link to={`/edit/${postinfo._id}`}>
+              <button className="all-btns">
+                <span>
+                  Edit
+                  <RiEditBoxLine />
+                </span>
+              </button>
+            </Link>
+          </div>
+          <div className="edit-delete">
+            <button className="all-btns" onClick={Delete_Post}>
+              <span>
+                Delete
+                <MdDeleteOutline />
+              </span>
+            </button>
+          </div>
         </div>
       )}
       <div className="image">

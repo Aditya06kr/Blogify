@@ -9,7 +9,7 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const fs = require("fs");
 const Post = require("./models/Post");
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 const salt = bcrypt.genSaltSync(10);
@@ -35,21 +35,21 @@ mongoose
     console.log(e);
   });
 
-  app.post("/register", async (req, res) => {
-    const { username, password } = req.body;
-    if(!password){
-      return res.status(400).json({message:"Empty Password!"});
-    }
-    try {
-      const userDoc = await User.create({
-        username,
-        password: bcrypt.hashSync(password, salt),
-      });
-      res.json(userDoc);
-    } catch (e) {
-      res.status(400).json(e);
-    }
-  });
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+  if (!password) {
+    return res.status(400).json({ message: "Empty Password!" });
+  }
+  try {
+    const userDoc = await User.create({
+      username,
+      password: bcrypt.hashSync(password, salt),
+    });
+    res.json(userDoc);
+  } catch (e) {
+    res.status(400).json(e);
+  }
+});
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -101,7 +101,7 @@ app.post("/post", upload.single("file"), async (req, res) => {
     const postDoc = await Post.create({
       title,
       summary,
-      content,  
+      content,
       cover: newPath,
       author: info.id,
     });
@@ -163,14 +163,27 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
-app.get("/",async(req,res,next)=>{
-  res.status(200).json({"message":"Working"});
+app.get("/", async (req, res, next) => {
+  res.status(200).json({ message: "Working" });
 });
 
-
-app.get("/ping",async(req,res,next)=>{
-  res.status(200).json({"message":"pong"});
+app.delete("/Delete", async (req, res) => {
+  const { id } = req.body;
+  const postDoc = await Post.findOne({ _id: id });
+  if (postDoc) {
+    try {
+      const doc = await Post.deleteOne({ _id: id });
+      return res.json(doc);
+    } catch (e) {
+      return res.status(404).json({ error: "Unable to Delete" });
+    }
+  } else {
+    return res.status(404).json({ error: "Post not found" });
+  }
 });
+
+app.get("/ping", async (req, res, next) => {
+  res.status(200).json({ message: "pong" });
+});
+
 app.listen(process.env.API_PORT);
-
-// mongodb+srv://Blog:mOd8HQQhHoa2gQk8@cluster0.xby3ou4.mongodb.net/?retryWrites=true&w=majority
