@@ -12,12 +12,11 @@ const Post = require("./models/Post");
 require("dotenv").config();
 
 const app = express();
-const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
 const corsOperation = {
   credentials: true,
-  origin: "https://blogifyme.vercel.app",
+  origin: "http://localhost:5173",
   optionsSuccessStatus: 200,
 };
 
@@ -37,13 +36,10 @@ mongoose
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  if (!password) {
-    return res.status(400).json({ message: "Empty Password!" });
-  }
   try {
     const userDoc = await User.create({
       username,
-      password: bcrypt.hashSync(password, salt),
+      password,
     });
     res.json(userDoc);
   } catch (e) {
