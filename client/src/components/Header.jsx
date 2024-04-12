@@ -26,10 +26,10 @@ function Header() {
       .catch((e) => {
         console.log("Catch 2");
       });
-  }, []);
+  },[]);
 
   async function logout() {
-    const res = await fetch(`http://localhost:4000/logout`, {
+    const res = await fetch(`${apiUrl}/logout`, {
       credentials: "include",
       method: "POST",
     });
