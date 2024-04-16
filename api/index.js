@@ -36,14 +36,25 @@ mongoose
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  try {
-    const userDoc = await User.create({
-      username,
-      password,
-    });
-    res.json(userDoc);
-  } catch (e) {
-    res.status(400).json(e);
+  if (username.length < 6) {
+    res.status(400).json("Minimum Length should be 6" )
+  } else if (password.length == 0) {
+    res.status(400).json("Password is required");
+  } else {
+    const existedUser = await User.findOne({ username });
+    if (existedUser) {
+      res.status(400).json("Username already Existed");
+    } else {
+      try {
+        const userDoc = await User.create({
+          username,
+          password,
+        });
+        res.json(userDoc);
+      } catch (e) {
+        res.status(400).json(e);
+      }
+    }
   }
 });
 

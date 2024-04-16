@@ -17,12 +17,12 @@ const Registerpage = () => {
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
-
-    if (res.ok) {
+    if (res.status==200) {
       toast.success("Registration Successfull !");
       setRedirect(true);
     } else {
-      toast.error("Not Registered!");
+      const response= await res.json();
+      toast.error(response);
     }
   }
 
